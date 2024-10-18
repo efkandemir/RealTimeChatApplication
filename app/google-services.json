@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "136141093306",
+    "project_id": "chatapplication-70542",
+    "storage_bucket": "chatapplication-70542.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136141093306:android:f087c56eedf24b11f5c583",
+        "android_client_info": {
+          "package_name": "com.efkan.chatapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGIPhvOHeAhxCP0n1yMkGIlLnnKC-qnPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

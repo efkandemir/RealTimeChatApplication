@@ -21,20 +21,21 @@ class Signup : AppCompatActivity() {
         binding.btnSignupsign.setOnClickListener{
             val email=binding.edtEmailsign.text.toString()
             val password=binding.edtPasswordsign.text.toString()
-            signUp(email,password)
+            if(!email.equals("") && !password.equals("")) {
+                signUp(email,password)
+            }
+            else{
+                Toast.makeText(this@Signup,"Email or password empty",Toast.LENGTH_SHORT).show()
+            }
         }
     }
     private fun signUp(email:String,password:String){
         //logic of creating user
-        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this) {
-            if(it.isSuccessful){
+        mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
                 val intent=Intent(this@Signup,Login::class.java)
                 startActivity(intent)
-            }
-            else{
-                Toast.makeText(this@Signup,"Some error occurred",Toast.LENGTH_SHORT).show()
-            }
-
+        }.addOnFailureListener {authResult->
+          Toast.makeText(this@Signup,authResult.localizedMessage,Toast.LENGTH_SHORT).show()
         }
     }
 }

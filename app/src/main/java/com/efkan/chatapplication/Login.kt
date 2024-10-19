@@ -5,16 +5,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.efkan.chatapplication.databinding.ActivityLoginBinding
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.math.log
 
 class Login : AppCompatActivity() {
     private lateinit var binding:ActivityLoginBinding
     private lateinit var mAuth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()   //login ekranında action barı gizlememizi sağlar
         mAuth=FirebaseAuth.getInstance()
         binding=ActivityLoginBinding.inflate(layoutInflater)
         val view=binding.root
@@ -30,16 +28,6 @@ class Login : AppCompatActivity() {
         }
     }
     private fun login(email: String,password:String){
-    //logic of logging user
-        /*mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
-            if(it.isSuccessful){
-                val intent=Intent(this@Login,MainActivity::class.java)
-                startActivity(intent)
-            }
-            else{
-                Toast.makeText(this@Login,"User does not exist",Toast.LENGTH_SHORT).show()
-            }
-        }*/
         mAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener {
             val intent=Intent(this@Login,MainActivity::class.java)
             startActivity(intent)

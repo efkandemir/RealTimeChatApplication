@@ -7,17 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".Signup">
     <ImageView
-        android:id="@+id/app_logo"
+        android:id="@+id/select_photosign"
         android:layout_width="240dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="110dp"
-        app:srcCompat="@drawable/mail"
+        app:srcCompat="@drawable/camera"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/app_logo"
+        android:layout_below="@id/select_photosign"
         android:layout_marginTop="10dp"
         android:hint="Name"
         android:paddingLeft="10dp"
@@ -51,17 +51,16 @@
         android:id="@+id/edt_passwordsign"/>
 
     <Button
+        android:id="@+id/btnSignupsign"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edt_passwordsign"
-        android:text="SIGN UP"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_below="@+id/edt_passwordsign"
+        android:layout_marginTop="21dp"
         android:background="@drawable/btn_background"
+        android:text="SIGN UP"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:id="@+id/btnSignupsign"
-        />
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>

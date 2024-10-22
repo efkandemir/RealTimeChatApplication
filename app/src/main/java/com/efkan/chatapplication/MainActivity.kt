@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 
 class MainActivity : AppCompatActivity() {
     private lateinit var userRecyclerView:RecyclerView
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         mAuth=FirebaseAuth.getInstance()
         mDbRef=FirebaseDatabase.getInstance().getReference()
         userList= ArrayList()
-        adapter= UserAdapter(this,userList)
+        adapter= UserAdapter(this,userList, firebaseStorage = FirebaseStorage.getInstance())
         binding.userRecyclerView.layoutManager=LinearLayoutManager(this)
         binding.userRecyclerView.adapter=adapter
 

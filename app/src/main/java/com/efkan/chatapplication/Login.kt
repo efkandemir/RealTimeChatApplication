@@ -12,11 +12,13 @@ class Login : AppCompatActivity() {
     private lateinit var mAuth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.hide()   //login ekranında action barı gizlememizi sağlar
-        mAuth=FirebaseAuth.getInstance()
         binding=ActivityLoginBinding.inflate(layoutInflater)
         val view=binding.root
         setContentView(view)
+        binding.edtEmail.setText("")
+        binding.edtPassword.setText("")
+        supportActionBar?.hide()   //login ekranında action barı gizlememizi sağlar
+        mAuth=FirebaseAuth.getInstance()
         binding.btnSignup.setOnClickListener{
             val intent=Intent(this,Signup::class.java)
             startActivity(intent)
@@ -26,6 +28,7 @@ class Login : AppCompatActivity() {
             val password=binding.edtPassword.text.toString()
             login(email,password)
         }
+
     }
     private fun login(email: String,password:String){
         mAuth.signInWithEmailAndPassword(email,password).addOnSuccessListener {
@@ -34,6 +37,11 @@ class Login : AppCompatActivity() {
         }.addOnFailureListener {  authResult->
             Toast.makeText(this@Login,authResult.localizedMessage,Toast.LENGTH_SHORT).show()
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        binding.edtEmail.setText("")     
+        binding.edtPassword.setText("")
     }
 
 }

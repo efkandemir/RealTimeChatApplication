@@ -4,15 +4,19 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 
 class MessageAdapter(val context: Context, val messageList: ArrayList<Message>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val item_receive = 1
     val item_sent=2
+    private lateinit var firebaseStorage: FirebaseStorage
 
     class SentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val sentMessage = itemView.findViewById<TextView>(R.id.txt_sent_message)
@@ -20,6 +24,7 @@ class MessageAdapter(val context: Context, val messageList: ArrayList<Message>) 
 
     class ReceiveViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val receiveMessage = itemView.findViewById<TextView>(R.id.txt_receive_message)
+        val receiveUserImage=itemView.findViewById<ImageView>(R.id.receiveImage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -56,6 +61,12 @@ class MessageAdapter(val context: Context, val messageList: ArrayList<Message>) 
         } else {
             val viewHolder = holder as ReceiveViewHolder
             holder.receiveMessage.text = currentMessage.message
+            firebaseStorage= FirebaseStorage.getInstance()
+            val newReferance=firebaseStorage.getReference(currentMessage.senderId!!)
+            newReferance.downloadUrl.addOnSuccessListener {uri->
+                Picasso.get().load(uri).into(holder.receiveUserImage)
+            }
+
         }
     }
 }
